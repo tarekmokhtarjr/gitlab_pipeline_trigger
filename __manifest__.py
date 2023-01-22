@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "Gitlab Integration",
+    'name': "Gitlab Pipeline Trigger",
 
     'summary': """
         A module to integrate Odoo with Gitlab to run pipelines for projects""",
