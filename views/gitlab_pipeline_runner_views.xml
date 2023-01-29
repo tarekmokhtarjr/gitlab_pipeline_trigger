@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="gitlab_pipeline_runner_form" model="ir.ui.view">
+        <field name="name">gitlab.pipeline.runner.view.form</field>
+        <field name="model">gitlab.pipeline.runner</field>
+        <field name="arch" type="xml">
+            <form string="Gitlab Pipeline Runner">
+                <header>
+                    <button name="run_pipeline" string="Run Pipeline" type="object" class="oe_highlight"/>
+                </header>
+                <sheet string="Gitlab Pipeline Runner">
+                    <div class="oe_button_box" name="button_box">
+                        <!-- place your smart button for pipelines here -->
+                    </div>
+                    <group>
+                        <group>
+                            <field name="name" string="Runner Name" required="True"/>
+                            <field name="project_id" string="Project" required="True"/>
+                            <field name="project_namespace" required="True"/>
+                            <field name="branch" required="True"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page name="pipeline_keys" string="Pipelines Variables">
+                            <field name="pipeline_variable_ids">
+                                <tree string="Variables" editable="bottom">
+                                    <field name="key" required="True"/>
+                                    <field name="value"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="gitlab_pipeline_runner_tree" model="ir.ui.view">
+        <field name="name">gitlab.pipeline.runner.view.tree</field>
+        <field name="model">gitlab.pipeline.runner</field>
+        <field name="arch" type="xml">
+            <tree string="Gitlab Runners">
+                <field name="name"/>
+                <field name="branch"/>
+            </tree>
+        </field>
+    </record>
+</odoo>

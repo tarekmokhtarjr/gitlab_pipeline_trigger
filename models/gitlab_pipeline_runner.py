@@ -7,14 +7,15 @@ class GitlabPipelineRunner(models.Model):
     _name = 'gitlab.pipeline.runner'
     _description = 'Gitlab Pipeline Runners'
 
+    branch = fields.Char('Branch')
+    name = fields.Char('Name')
     project_id = fields.Many2one('project.project', string='Project')
     pipeline_ids = fields.One2many(
         'gitlab.pipeline', 
         'gitlab_runner_id', 
         string='Pipelines'
     )
-    project_namespace = fields.Char('Project URL', related='project_id.project_namespace')
-    branch = fields.Char('Branch')
+    project_namespace = fields.Char('Project Namespace', related='project_id.project_namespace')
     pipeline_variable_ids = fields.One2many(
         'pipeline.variable', 
         'gitlab_runner_id', 
@@ -30,7 +31,7 @@ class GitlabPipelineRunner(models.Model):
             gl.auth()
         except:
             raise ValidationError(
-                "Invalid token, please provide the correct private token.")
+                "Invalid gitlab token or url, please provide the correct private token and gitlab url.")
     
     def run_pipeline(self):
         enabled = self.env["ir.config_parameter"].sudo()\
@@ -46,6 +47,7 @@ class GitlabPipelineRunner(models.Model):
                 private_token=gitlab_private_token
             )
             project = gl.projects.get(self.project_namespace)
+            #Note: if there is no .gitlab-ci.yml an error (Missing CI config file) will raise
             pipeline = project.pipelines.create({
                 'ref': self.branch, 
                 'variables': [

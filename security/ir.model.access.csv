@@ -1,2 +1,5 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_gitlab_integration_gitlab_integration,gitlab_integration.gitlab_integration,model_gitlab_integration_gitlab_integration,base.group_user,1,1,1,1
+access_gitlab_pipeline_runner,gitlab_pipeline_runner,model_gitlab_pipeline_runner,base.group_user,1,1,1,1
+access_gitlab_pipeline,gitlab_pipeline,model_gitlab_pipeline,base.group_user,1,1,1,1
+access_gitlab_job,gitlab_job,model_gitlab_job,base.group_user,1,1,1,1
+access_gitlab_pipeline_variable,pipeline_variable,model_pipeline_variable,base.group_user,1,1,1,1
