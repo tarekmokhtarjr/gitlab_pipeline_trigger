@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="gitlab_pipeline_form" model="ir.ui.view">
+        <field name="name">gitlab.pipeline.view.form</field>
+        <field name="model">gitlab.pipeline</field>
+        <field name="arch" type="xml">
+            <form string="Gitlab Pipeline" create="false" edit="false">
+                <sheet string="Gitlab Pipeline">
+                    <div class="oe_button_box" name="button_box">
+                        <button class="oe_stat_button" type="object"
+                            name="action_jobs" icon="fa-arrow-right">
+                            <field string="Jobs" name="job_count" widget="statinfo"/>
+                        </button>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="pipeline_external_id" readonly="True"/>
+                            <field name="web_url" widget="url" readonly="True"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="gitlab_pipeline_tree" model="ir.ui.view">
+        <field name="name">gitlab.pipeline.view.tree</field>
+        <field name="model">gitlab.pipeline</field>
+        <field name="arch" type="xml">
+            <tree string="Gitlab Pipelines" create="false">
+                <field name="pipeline_external_id" readonly="True"/>
+                <field name="web_url" readonly="True"/>
+            </tree>
+        </field>
+    </record>
+</odoo>

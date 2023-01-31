@@ -10,12 +10,15 @@
                 </header>
                 <sheet string="Gitlab Pipeline Runner">
                     <div class="oe_button_box" name="button_box">
-                        <!-- place your smart button for pipelines here -->
+                        <button class="oe_stat_button" type="object"
+                            name="action_pipelines" icon="fa-sliders">
+                            <field string="Pipelines" name="pipeline_count" widget="statinfo"/>
+                        </button>
                     </div>
                     <group>
                         <group>
                             <field name="name" string="Runner Name" required="True"/>
-                            <field name="project_id" string="Project" required="True"/>
+                            <field name="project_id" string="Project" required="True" readonly="True"/>
                             <field name="project_namespace" required="True"/>
                             <field name="branch" required="True"/>
                         </group>
