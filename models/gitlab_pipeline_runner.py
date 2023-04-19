@@ -36,15 +36,11 @@ class GitlabPipelineRunner(models.Model):
             "domain": [("gitlab_runner_id", "=", self.id)],
             "views": [
                 (
-                    self.env.ref(
-                        "gitlab_pipeline_trigger.gitlab_pipeline_tree"
-                    ).id,
+                    self.env.ref("gitlab_pipeline_trigger.gitlab_pipeline_tree").id,
                     "tree",
                 ),
                 (
-                    self.env.ref(
-                        "gitlab_pipeline_trigger.gitlab_pipeline_form"
-                    ).id,
+                    self.env.ref("gitlab_pipeline_trigger.gitlab_pipeline_form").id,
                     "form",
                 ),
             ],
@@ -54,9 +50,7 @@ class GitlabPipelineRunner(models.Model):
 
     def validate_config_on_create(self, gitlab_url, gitlab_private_token):
         try:
-            gl = gitlab.Gitlab(
-                url=gitlab_url, private_token=gitlab_private_token
-            )
+            gl = gitlab.Gitlab(url=gitlab_url, private_token=gitlab_private_token)
             gl.auth()
         except:
             raise ValidationError(
@@ -82,9 +76,7 @@ class GitlabPipelineRunner(models.Model):
         )
         self.validate_config_on_create(gitlab_url, gitlab_private_token)
         if enabled:
-            gl = gitlab.Gitlab(
-                url=gitlab_url, private_token=gitlab_private_token
-            )
+            gl = gitlab.Gitlab(url=gitlab_url, private_token=gitlab_private_token)
             project = gl.projects.get(self.project_namespace)
             # Note: if there is no .gitlab-ci.yml an error (Missing CI config file) will raise
             pipeline = project.pipelines.create(
@@ -121,9 +113,7 @@ class GitlabPipelineRunner(models.Model):
                 "res_model": "gitlab.pipeline",
                 "views": [
                     [
-                        self.env.ref(
-                            "gitlab_pipeline_trigger.gitlab_pipeline_form"
-                        ).id,
+                        self.env.ref("gitlab_pipeline_trigger.gitlab_pipeline_form").id,
                         "form",
                     ]
                 ],
