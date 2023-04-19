@@ -15,12 +15,18 @@ class Project(models.Model):
     )
 
     def _compute_gitlab_runner_count(self):
+        """Counts the number of related Gitlab runners for the project."""
         for project in self:
             project.gitlab_runner_count = len(
                 self.custom_pipeline_runner_ids.ids
             )
 
     def action_gitlab_runners(self):
+        """Returns a dictionary for gitlab runners action.
+
+        :return: dictionary for gitlab runners action.
+        :rtype: dictionary
+        """
         self.ensure_one()
         return {
             "res_model": "gitlab.pipeline.runner",

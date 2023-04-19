@@ -18,7 +18,7 @@
                     <group>
                         <group>
                             <field name="name" string="Runner Name" required="True"/>
-                            <field name="project_id" string="Project" required="True" readonly="True"/>
+                            <field name="project_id" string="Project" required="True"/>
                             <field name="project_namespace" required="True"/>
                             <field name="branch" required="True"/>
                         </group>

@@ -24,10 +24,17 @@ class GitlabPipelineRunner(models.Model):
     )
 
     def _compute_pipeline_count(self):
+        """Computes the number of pipelines which are created by this
+        runner."""
         for gl_runner in self:
             gl_runner.pipeline_count = len(self.pipeline_ids.ids)
 
     def action_pipelines(self):
+        """Pipelines action.
+
+        :return: action dictionary
+        :rtype: dictionary
+        """
         self.ensure_one()
         return {
             "res_model": "gitlab.pipeline",
@@ -36,11 +43,15 @@ class GitlabPipelineRunner(models.Model):
             "domain": [("gitlab_runner_id", "=", self.id)],
             "views": [
                 (
-                    self.env.ref("gitlab_pipeline_trigger.gitlab_pipeline_tree").id,
+                    self.env.ref(
+                        "gitlab_pipeline_trigger.gitlab_pipeline_tree"
+                    ).id,
                     "tree",
                 ),
                 (
-                    self.env.ref("gitlab_pipeline_trigger.gitlab_pipeline_form").id,
+                    self.env.ref(
+                        "gitlab_pipeline_trigger.gitlab_pipeline_form"
+                    ).id,
                     "form",
                 ),
             ],
@@ -49,8 +60,19 @@ class GitlabPipelineRunner(models.Model):
         }
 
     def validate_config_on_create(self, gitlab_url, gitlab_private_token):
+        """Authenticates the gitlab url and the token.
+
+        :param gitlab_url: Gitlab server url, example gitlab.com
+        :type gitlab_url: string
+        :param gitlab_private_token: Gitlab private token
+        :type gitlab_private_token: string
+        :raises ValidationError: An error message which appears if the gitlab
+                token or the url is not correct.
+        """
         try:
-            gl = gitlab.Gitlab(url=gitlab_url, private_token=gitlab_private_token)
+            gl = gitlab.Gitlab(
+                url=gitlab_url, private_token=gitlab_private_token
+            )
             gl.auth()
         except:
             raise ValidationError(
@@ -59,7 +81,16 @@ class GitlabPipelineRunner(models.Model):
             )
 
     def run_pipeline(self):
-        enabled = (self.env["ir.config_parameter"].sudo().get_param("gitlab_pipeline_trigger.enable_gitlab_integration"))
+        """Create and run the pipeline and it's related jobs.
+
+        :return: dictionary for pipeline action
+        :rtype: dictionary
+        """
+        enabled = (
+            self.env["ir.config_parameter"]
+            .sudo()
+            .get_param("gitlab_pipeline_trigger.enable_gitlab_integration")
+        )
         gitlab_url = (
             self.env["ir.config_parameter"]
             .sudo()
@@ -72,9 +103,12 @@ class GitlabPipelineRunner(models.Model):
         )
         self.validate_config_on_create(gitlab_url, gitlab_private_token)
         if enabled:
-            gl = gitlab.Gitlab(url=gitlab_url, private_token=gitlab_private_token)
+            gl = gitlab.Gitlab(
+                url=gitlab_url, private_token=gitlab_private_token
+            )
             project = gl.projects.get(self.project_namespace)
-            # Note: if there is no .gitlab-ci.yml an error (Missing CI config file) will raise
+            # Note: if there is no .gitlab-ci.yml an error
+            # (Missing CI config file) will raise
             pipeline = project.pipelines.create(
                 {
                     "ref": self.branch,
@@ -109,7 +143,9 @@ class GitlabPipelineRunner(models.Model):
                 "res_model": "gitlab.pipeline",
                 "views": [
                     [
-                        self.env.ref("gitlab_pipeline_trigger.gitlab_pipeline_form").id,
+                        self.env.ref(
+                            "gitlab_pipeline_trigger.gitlab_pipeline_form"
+                        ).id,
                         "form",
                     ]
                 ],

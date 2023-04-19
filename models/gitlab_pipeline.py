@@ -16,10 +16,16 @@ class GitlabPipeline(models.Model):
     web_url = fields.Char(string="Pipeline URL")
 
     def _compute_job_count(self):
+        """Number of jobs created for the pipeline."""
         for pipeline in self:
             pipeline.job_count = len(self.job_ids.ids)
 
     def action_jobs(self):
+        """Returns a dictionary for gitlab jobs related to the pipeline.
+
+        :return: dictionary for jobs action
+        :rtype: dictionary
+        """
         self.ensure_one()
         return {
             "res_model": "gitlab.job",
