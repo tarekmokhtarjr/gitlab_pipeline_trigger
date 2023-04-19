@@ -19,9 +19,7 @@ class GitlabPipelineRunner(models.Model):
     pipeline_variable_ids = fields.One2many(
         "pipeline.variable", "gitlab_runner_id", string="Pipeline Variables"
     )
-    pipeline_count = fields.Integer(
-        compute="_compute_pipeline_count", string="Pipeline Count"
-    )
+    pipeline_count = fields.Integer(compute="_compute_pipeline_count", string="Pipeline Count")
 
     def _compute_pipeline_count(self):
         for gl_runner in self:
@@ -41,7 +39,7 @@ class GitlabPipelineRunner(models.Model):
                 ),
                 (
                     self.env.ref("gitlab_pipeline_trigger.gitlab_pipeline_form").id,
-                    "form",
+                    "form",       
                 ),
             ],
             "view_mode": "tree,form",
