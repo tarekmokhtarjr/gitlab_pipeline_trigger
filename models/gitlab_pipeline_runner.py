@@ -59,11 +59,7 @@ class GitlabPipelineRunner(models.Model):
             )
 
     def run_pipeline(self):
-        enabled = (
-            self.env["ir.config_parameter"]
-            .sudo()
-            .get_param("gitlab_pipeline_trigger.enable_gitlab_integration")
-        )
+        enabled = (self.env["ir.config_parameter"].sudo().get_param("gitlab_pipeline_trigger.enable_gitlab_integration"))
         gitlab_url = (
             self.env["ir.config_parameter"]
             .sudo()
