@@ -5,7 +5,9 @@ class Project(models.Model):
     _inherit = "project.project"
 
     custom_pipeline_runner_ids = fields.One2many(
-        "gitlab.pipeline.runner", "project_id", string="Custom Gitlab Pipeline Runner"
+        "gitlab.pipeline.runner",
+        "project_id",
+        string="Custom Gitlab Pipeline Runner",
     )
     project_namespace = fields.Char("Project Namespace")
     gitlab_runner_count = fields.Integer(
@@ -14,7 +16,9 @@ class Project(models.Model):
 
     def _compute_gitlab_runner_count(self):
         for project in self:
-            project.gitlab_runner_count = len(self.custom_pipeline_runner_ids.ids)
+            project.gitlab_runner_count = len(
+                self.custom_pipeline_runner_ids.ids
+            )
 
     def action_gitlab_runners(self):
         self.ensure_one()

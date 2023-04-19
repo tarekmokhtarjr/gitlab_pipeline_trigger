@@ -9,7 +9,9 @@ class GitlabPipeline(models.Model):
 
     gitlab_runner_id = fields.Many2one("gitlab.pipeline.runner")
     job_ids = fields.One2many("gitlab.job", "pipeline_id", string="Pipelines")
-    job_count = fields.Integer(compute="_compute_job_count", string="Job Count")
+    job_count = fields.Integer(
+        compute="_compute_job_count", string="Job Count"
+    )
     pipeline_external_id = fields.Char("External ID")
     web_url = fields.Char(string="Pipeline URL")
 
