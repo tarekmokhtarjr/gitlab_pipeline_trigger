@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
     <record id="gitlab_job_form" model="ir.ui.view">
         <field name="name">gitlab.job.view.form</field>
@@ -9,10 +9,11 @@
                     <group>
                         <group>
                             <h3>
-                                <field name="name" readonly="True"/>
+                                <field name="name" readonly="True" />
                             </h3>
-                            <field name="job_external_id" readonly="True"/>
-                            <field name="web_url" widget="url" readonly="True"/>
+                            <field name="job_external_id" readonly="True" />
+                            <field name="web_url" widget="url" readonly="True"
+                            />
                         </group>
                     </group>
                 </sheet>
@@ -24,9 +25,9 @@
         <field name="model">gitlab.job</field>
         <field name="arch" type="xml">
             <tree string="Gitlab Jobs" create="false">
-                <field name="job_external_id" readonly="True"/>
-                <field name="name" readonly="True"/>
-                <field name="web_url" readonly="True"/>
+                <field name="job_external_id" readonly="True" />
+                <field name="name" readonly="True" />
+                <field name="web_url" readonly="True" />
             </tree>
         </field>
     </record>

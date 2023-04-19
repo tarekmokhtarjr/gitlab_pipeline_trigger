@@ -1,9 +1,12 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
     <record id="res_config_settings_view_form" model="ir.ui.view">
-        <field name="name">res.config.settings.view.form.inherit.gitlab.integration</field>
+        <field name="name">
+            res.config.settings.view.form.inherit.gitlab.integration
+        </field>
         <field name="model">res.config.settings</field>
-        <field name="inherit_id" ref="base_setup.res_config_settings_view_form"/>
+        <field name="inherit_id" ref="base_setup.res_config_settings_view_form"
+        />
         <field name="arch" type="xml">
             <xpath expr="//div[@name='integration']" position="inside">
                 <div class="col-12 col-lg-6 o_setting_box">
@@ -11,18 +14,34 @@
                         <field name="enable_gitlab_integration" />
                     </div>
                     <div class="o_setting_right_pane">
-                        <label string="Gitlab Integration" for="enable_gitlab_integration"/>
+                        <label
+                            string="Gitlab Integration"
+                            for="enable_gitlab_integration"
+                        />
                         <div class="text-muted">
                             Enable Odoo to run pipelines in Gitlab projects
                         </div>
-                        <div class="content-group" attrs="{'invisible': [('enable_gitlab_integration','=',False)]}">
+                        <div
+                            class="content-group"
+                            attrs="{'invisible': [('enable_gitlab_integration','=',False)]}"
+                        >
                             <div class="content-group mt16">
-                                <label for="gitlab_private_token" class="o_light_label"/>
-                                <field name="gitlab_private_token" password="True" attrs="{'required': [('enable_gitlab_integration','=', True)]}"/>
+                                <label
+                                    for="gitlab_private_token"
+                                    class="o_light_label"
+                                />
+                                <field
+                                    name="gitlab_private_token"
+                                    password="True"
+                                    attrs="{'required': [('enable_gitlab_integration','=', True)]}"
+                                />
                             </div>
                             <div class="content-group mt16">
-                                <label for="gitlab_url" class="o_light_label"/>
-                                <field name="gitlab_url" attrs="{'required': [('enable_gitlab_integration','=', True)]}"/>
+                                <label for="gitlab_url" class="o_light_label" />
+                                <field
+                                    name="gitlab_url"
+                                    attrs="{'required': [('enable_gitlab_integration','=', True)]}"
+                                />
                             </div>
                         </div>
                     </div>

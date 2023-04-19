@@ -1,21 +1,30 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
     <record id="project_project_gitlab_runners_form" model="ir.ui.view">
         <field name="name">project.project.form.inherit</field>
         <field name="model">project.project</field>
-        <field name="inherit_id" ref="project.edit_project"/>
+        <field name="inherit_id" ref="project.edit_project" />
         <field name="arch" type="xml">
-            <xpath expr="//button[@name='%(project.act_project_project_2_project_task_all)d']" position="before">
-                <button class="oe_stat_button" type="object"
-                    name="action_gitlab_runners" icon="fa-gitlab">
-                    <field string="Gitlab Runners" name="gitlab_runner_count" widget="statinfo"/>
+            <xpath
+                expr="//button[@name='%(project.act_project_project_2_project_task_all)d']"
+                position="before"
+            >
+                <button
+                    class="oe_stat_button"
+                    type="object"
+                    name="action_gitlab_runners"
+                    icon="fa-gitlab"
+                >
+                    <field
+                        string="Gitlab Runners"
+                        name="gitlab_runner_count"
+                        widget="statinfo"
+                    />
                 </button>
             </xpath>
             <xpath expr="//field[@name='tag_ids']" position="after">
-                <field name="project_namespace"/>
+                <field name="project_namespace" />
             </xpath>
         </field>
     </record>
-
 </odoo>
