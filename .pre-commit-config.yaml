@@ -23,4 +23,4 @@ repos:
             - prettier@1.19.1
             - "@prettier/plugin-xml@0.3.0"
         files: \.xml$
-        args: [--tab-width=4, --xml-whitespace-sensitivity, "strict", --bracket-same-line=true]
+        args: [--tab-width=4, --html-whitespace-sensitivity, "strict", --bracket-same-line=false, --single-attribute-per-line=false]

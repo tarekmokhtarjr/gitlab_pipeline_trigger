@@ -13,9 +13,7 @@ class GitlabPipelineRunner(models.Model):
     pipeline_ids = fields.One2many(
         "gitlab.pipeline", "gitlab_runner_id", string="Pipelines"
     )
-    project_namespace = fields.Char(
-        "Project Namespace", related="project_id.project_namespace"
-    )
+    project_namespace = fields.Char("Project Namespace")
     pipeline_variable_ids = fields.One2many(
         "pipeline.variable", "gitlab_runner_id", string="Pipeline Variables"
     )
