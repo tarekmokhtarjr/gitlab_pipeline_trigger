@@ -9,6 +9,7 @@
     "author": "Ahmed Mokhtar",
     "category": "Tools",
     "version": "15.0.1",
+    "license": "GPL-3",
     "depends": ["project"],
     "data": [
         "security/ir.model.access.csv",
