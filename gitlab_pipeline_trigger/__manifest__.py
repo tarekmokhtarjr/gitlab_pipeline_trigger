@@ -11,7 +11,7 @@
     "version": "15.0.1",
     "license": "GPL-3",
     "depends": ["project"],
-    "images": "static/description/odoo_gitlab.png",
+    "images": "static/description/thmubnail.png",
     "data": [
         "security/ir.model.access.csv",
         "views/gitlab_jobs_views.xml",
