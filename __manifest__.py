@@ -9,7 +9,7 @@
     "author": "Ahmed Mokhtar",
     "category": "Tools",
     "version": "15.0.1",
-    "depends": ["base", "base_setup", "project"],
+    "depends": ["project"],
     "data": [
         "security/ir.model.access.csv",
         "views/gitlab_jobs_views.xml",

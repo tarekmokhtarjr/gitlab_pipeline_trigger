@@ -6,18 +6,36 @@
         <field name="arch" type="xml">
             <form string="Gitlab Pipeline Runner">
                 <header>
-                    <button name="run_pipeline" string="Run Pipeline" type="object" class="oe_highlight" />
+                    <button
+                        name="run_pipeline"
+                        string="Run Pipeline"
+                        type="object"
+                        class="oe_highlight"
+                    />
                 </header>
                 <sheet string="Gitlab Pipeline Runner">
                     <div class="oe_button_box" name="button_box">
-                        <button class="oe_stat_button" type="object" name="action_pipelines" icon="fa-sliders">
-                            <field string="Pipelines" name="pipeline_count" widget="statinfo" />
+                        <button
+                            class="oe_stat_button"
+                            type="object"
+                            name="action_pipelines"
+                            icon="fa-sliders"
+                        >
+                            <field
+                                string="Pipelines"
+                                name="pipeline_count"
+                                widget="statinfo"
+                            />
                         </button>
                     </div>
                     <group>
                         <group>
-                            <field name="name" string="Runner Name" required="True" />
-                            <field name="project_id" string="Project" required="True" />
+                            <field
+                                name="name"
+                                string="Runner Name"
+                                required="True"
+                            />
+                            <field name="project_id" string="Project" />
                             <field name="project_namespace" required="True" />
                             <field name="branch" required="True" />
                         </group>
@@ -50,7 +68,7 @@
         <field name="name">Gitlab Pipline Triggers</field>
         <field name="res_model">gitlab.pipeline.runner</field>
         <field name="view_mode">tree,form</field>
-        <field name="view_id" ref="gitlab_pipeline_runner_tree"/>
+        <field name="view_id" ref="gitlab_pipeline_runner_tree" />
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
                 No gitlab pipeline triggers found. Let's create one!
@@ -58,17 +76,17 @@
         </field>
     </record>
     <!-- Top menu item -->
-    <menuitem 
-        name="Gitlab" 
-        id="gitlab_root_menu" 
-        web_icon="gitlab_pipeline_trigger,static/description/icon.png" 
+    <menuitem
+        name="Gitlab"
+        id="gitlab_root_menu"
+        web_icon="gitlab_pipeline_trigger,static/description/icon.png"
         sequence="200"
     />
-    <menuitem 
-        action="gitlab_pipeline_trigger_runner_action" 
-        id="menu_gitlab_pipeline_triggers" 
-        name="Pipeline Triggers" 
-        parent="gitlab_root_menu" 
+    <menuitem
+        action="gitlab_pipeline_trigger_runner_action"
+        id="menu_gitlab_pipeline_triggers"
+        name="Pipeline Triggers"
+        parent="gitlab_root_menu"
         sequence="1"
     />
 </odoo>

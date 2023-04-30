@@ -100,6 +100,7 @@ class GitlabPipelineRunner(models.Model):
             .get_param("gitlab_pipeline_trigger.gitlab_private_token")
         )
         self.validate_config_on_create(gitlab_url, gitlab_private_token)
+        action = {}
         if enabled:
             gl = gitlab.Gitlab(
                 url=gitlab_url, private_token=gitlab_private_token
@@ -149,4 +150,9 @@ class GitlabPipelineRunner(models.Model):
                 ],
                 "res_id": gl_pipeline.id,
             }
-            return action
+        else:
+            raise ValidationError(
+                "You need to enable Gitlab Integration from "
+                "Settings>General Settings>Integrations>Gitlab Integration"
+            )
+        return action
