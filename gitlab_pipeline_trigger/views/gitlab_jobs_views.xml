@@ -6,14 +6,13 @@
         <field name="arch" type="xml">
             <form string="Gitlab Job" create="false" edit="false">
                 <sheet string="Gitlab Job">
+                    <h3>
+                        <field name="name" readonly="True" />
+                    </h3>
                     <group>
                         <group>
-                            <h3>
-                                <field name="name" readonly="True" />
-                            </h3>
                             <field name="job_external_id" readonly="True" />
-                            <field name="web_url" widget="url" readonly="True"
-                            />
+                            <field name="web_url" widget="url" readonly="True"/>
                         </group>
                     </group>
                 </sheet>

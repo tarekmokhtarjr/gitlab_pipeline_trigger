@@ -6,7 +6,7 @@
         <field name="inherit_id" ref="project.edit_project" />
         <field name="arch" type="xml">
             <xpath
-                expr="//button[@name='%(project.act_project_project_2_project_task_all)d']"
+                expr="//button[@name='project_update_all_action']"
                 position="before"
             >
                 <button

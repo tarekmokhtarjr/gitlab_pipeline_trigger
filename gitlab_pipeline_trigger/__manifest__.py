@@ -8,7 +8,7 @@
     """,
     "author": "Ahmed Mokhtar",
     "category": "Tools",
-    "version": "15.0.1",
+    "version": "16.0.1",
     "license": "GPL-3",
     "depends": ["project"],
     "images": ["static/description/logo.png"],
